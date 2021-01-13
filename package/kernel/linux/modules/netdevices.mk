@@ -87,7 +87,7 @@ define KernelPackage/atl1e
   DEPENDS:=@PCI_SUPPORT
   KCONFIG:=CONFIG_ATL1E
   FILES:=$(LINUX_DIR)/drivers/net/ethernet/atheros/atl1e/atl1e.ko
-  AUTOLOAD:=$(call AutoProbe,atl1e)
+  AUTOLOAD:=
 endef
 
 $(eval $(call KernelPackage,atl1e))
@@ -106,6 +106,22 @@ define KernelPackage/libphy/description
 endef
 
 $(eval $(call KernelPackage,libphy))
+
+define KernelPackage/aquantia
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=AQUANTIA PHY
+  KCONFIG:=CONFIG_AQTION=m
+  FILES:= \
+  $(LINUX_DIR)/drivers/net/phy/aquantia_main.ko \
+  $(LINUX_DIR)/drivers/net/phy/aquantia_hwmon.ko
+  AUTOLOAD:=$(call AutoLoad,15,aquantia,1)
+endef
+
+define KernelPackage/aquantia/description
+ AQUANTIA PHY 
+endef
+
+$(eval $(call KernelPackage,aquantia))
 
 
 define KernelPackage/phylink

@@ -46,4 +46,17 @@ define Device/xiaomi_ax3600
 endef
 TARGET_DEVICES += xiaomi_ax3600
 
+define Device/netgear_rax120v1
+	$(call Device/FitImage)
+	$(call Device/UbiFit)
+	DEVICE_VENDOR := Netgear
+	DEVICE_MODEL := RAX120v1 (AX6000)
+	BLOCKSIZE := 128k
+	PAGESIZE := 2048
+	DEVICE_DTS_CONFIG := config@hk01
+	SOC := ipq8074
+	DEVICE_PACKAGES := kmod-ath11k-ahb ath11k-firmware-ipq8074 kmod-usb-net-aqc111
+endef
+TARGET_DEVICES += netgear_rax120v1
+
 $(eval $(call BuildImage))
